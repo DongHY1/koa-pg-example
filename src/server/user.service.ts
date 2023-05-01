@@ -26,9 +26,9 @@ class UserService {
     const values = [name]
     try {
       const res = await client.query(statement, values)
-      const rows = res.rows[0]
+      const row = res.rows[0]
       client.release()
-      return !rows ? '' : rows.name
+      return row ? row.name : ''
     }
     catch (err) {
       console.log(err.stack)
