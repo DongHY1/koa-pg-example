@@ -1,11 +1,11 @@
 {
-  "name": "hystart-ts",
+  "name": "koa-pg-example",
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@8.2.0",
   "description": "my start template",
   "author": "Dong HY <hi@donghy.me>",
-  "homepage": "https://github.com/DongHY1/[name]#readme",
+  "homepage": "https://github.com/DongHY1/koa-pg-example#readme",
   "license": "MIT",
   "private": false,
   "main": "dist/index.js",
@@ -43,6 +43,7 @@
     "@koa/router": "^12.0.0",
     "dotenv": "^16.0.3",
     "koa": "^2.14.2",
-    "koa-bodyparser": "^4.4.0"
+    "koa-bodyparser": "^4.4.0",
+    "zod": "^3.21.4"
   }
 }
