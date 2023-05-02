@@ -1,5 +1,5 @@
 import type { Context, Next } from 'koa'
-import { userService } from '../server/user.service.js'
+import { userService } from '../service/user.service.js'
 import type { IUser } from '../types/index.js'
 import { ErrorStatus } from '../types/index.js'
 import { encryptPassword } from '../utils/encryptPassword.js'
@@ -9,7 +9,7 @@ export async function checkUserMiddleware(ctx: Context, next: Next) {
   if (!user.name || !user.password)
     return ctx.app.emit('error', ErrorStatus.NameOrPasswordIsNull, ctx)
 
-  const findUserResult = await userService.findUserByName(user.name)
+  const findUserResult = await userService.findUser(user.name)
   const isRegister = findUserResult !== ''
   if (isRegister)
     return ctx.app.emit('error', ErrorStatus.NameIsRegistered, ctx)

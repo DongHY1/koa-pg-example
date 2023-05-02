@@ -19,3 +19,7 @@ export enum ErrorMessage {
   NameOrPasswordIsNull = '用户名或密码为空',
   NameIsRegistered = '用户名已经被注册',
 }
+export enum OperateUser {
+  Create = 'Create',
+  Find = 'Find',
+}

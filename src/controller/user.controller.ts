@@ -1,6 +1,6 @@
 import type { Context } from 'koa'
-import { userService } from '../server/user.service.js'
-import type { IUser } from '../types'
+import { userService } from '../service/user.service.js'
+import type { IUser } from '../types/index.js'
 
 class UserController {
   async createUser(ctx: Context) {
