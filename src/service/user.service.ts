@@ -8,15 +8,20 @@ interface IProps {
 }
 class UserService {
   async createUser(user: IUser): Promise<string> {
-    return await this.operateUser(OperateUser.Create, user)
+    try {
+      const res = await this.operateUser(OperateUser.Create, user)
+      return res
+    }
+    catch (error) {
+      throw new Error(error.message)
+    }
   }
 
   async findUser(name: string): Promise<string> {
-    // 查询用户
     return await this.operateUser(OperateUser.Find, { name })
   }
 
-  async operateUser(operation: string, props: IProps): Promise<string> {
+  private async operateUser(operation: string, props: IProps): Promise<string> {
     const client = await pool.connect()
     let statement = ''
     let values = []
@@ -30,15 +35,10 @@ class UserService {
         values = [props.name]
         break
     }
-    try {
-      const res = await client.query(statement, values)
-      const row = res.rows[0]
-      client.release()
-      return row ? row.name : ''
-    }
-    catch (err) {
-      console.log(err.stack)
-    }
+    const res = await client.query(statement, values)
+    const row = res.rows[0]
+    client.release()
+    return row ? row.name : ''
   }
 }
 
