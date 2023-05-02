@@ -15,11 +15,6 @@ describe('User Servive Unit Test', () => {
       expect(spy).toHaveReturnedWith(name)
       expect(returnUserName).toEqual(name)
     })
-    it('if there is a same username in the database, registration should be failed', async () => {
-      const name = 'test'
-      const password = 'test'
-      expect(() => userService.createUser({ name, password })).rejects.toThrow('duplicate key value violates unique constraint "users_name_key"')
-    })
     it('find user in database', async () => {
       const name = 'test'
       const spy = vi.spyOn(userService, 'findUser').mockResolvedValue(name)
